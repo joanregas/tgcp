@@ -24,10 +24,10 @@
       "service": "compute",
       "api": {
         "base": "https://compute.googleapis.com/compute/v1",
-        "path": "projects/{project}/zones/{zone}/instances",
+        "path": "projects/{project}/aggregated/instances",
         "method": "GET"
       },
-      "response_path": "items",
+      "response_path": "items.*.instances",
       "id_field": "id",
       "name_field": "name",
       "columns": [

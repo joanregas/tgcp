@@ -124,15 +124,15 @@ impl GcpClient {
             .await?;
 
         let status = res.status();
-        debug!("GCP API response: {} {} -> {}", method, url, status);
+        debug!("DEBUG2: GCP API response: {} {} -> {}", method, url, status);
 
         if !status.is_success() {
             let text = res.text().await?;
             error!(
-                "GCP API Error {}: {} {}\nResponse: {}",
+                "STATUS: GCP API Error {}: {} {}\nResponse: {}",
                 status, method, url, text
             );
-            return Err(anyhow::anyhow!("GCP API Error {}: {}", status, text));
+            return Err(anyhow::anyhow!("STATUS ERROR-1: GCP API Error {}: {}", status, text));
         }
 
         // Handle empty responses (e.g., 204 No Content)
@@ -176,7 +176,7 @@ impl GcpClient {
         if !res.status().is_success() {
             let status = res.status();
             let text = res.text().await?;
-            return Err(anyhow::anyhow!("GCP API Error {}: {}", status, text));
+            return Err(anyhow::anyhow!("!res.status GCP API Error {}: {}", status, text));
         }
 
         let text = res.text().await?;

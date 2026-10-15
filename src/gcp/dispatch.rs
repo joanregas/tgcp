@@ -42,6 +42,8 @@ pub async fn list_resources(
     debug!("Listing resources: {} -> {}", resource.display_name, url);
 
     let response = client.request(&resource.api.method, &url).await?;
+    
+    debug!("GCP response: {}", serde_json::to_string_pretty(&response)?);
 
     let items = if resource.response_path.is_empty() {
         if response.is_array() {
